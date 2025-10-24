@@ -1,6 +1,7 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 
 public class Application {
     private static String[] carNames=null;
@@ -14,24 +15,24 @@ public class Application {
 
         createCars();
 
-        System.out.println("샐행 결과");
+        System.out.println("\n실행 결과");
         startRacing();
 
         determineWinner();
     }
     private static void determineWinner(){
         int max=0;
-        String[] winners=new String[cars.length];
+        ArrayList<String> winners=new ArrayList<>();
         for(Car car:cars){
             int distance=car.getDistance();
-            if(max>distance){
+            if(max<distance){
                 max=distance;
             }
         }
-        int i=0;
+
         for(Car car:cars){
             if(max==car.getDistance()){
-                winners[i++]=car.getName();
+                winners.add(car.getName());
             }
         }
         System.out.println("최종 우승자 : "+String.join(", ",winners));
@@ -41,8 +42,8 @@ public class Application {
             for(Car car:cars){
                 car.race();
             }
+            System.out.println();
         }
-        System.out.println();
     }
     private static void createCars(){
         cars=new Car[carNames.length];
@@ -59,7 +60,7 @@ public class Application {
         }
     }
     private static void getCarNames(){
-        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분");
+        System.out.println("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)");
         String strCarNames=Console.readLine();
 
         carNames=strCarNames.split(",");;
