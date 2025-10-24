@@ -5,11 +5,31 @@ import camp.nextstep.edu.missionutils.Console;
 public class Application {
     private static String[] carNames=null;
     private static int raceCount;
+    private static Car[] cars;
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         getCarNames();
         getRaceCount();
+
+        createCars();
+        System.out.println("샐행 결과");
+        startRacing();
+    }
+    private static void startRacing(){
+        for(int i=0;i<raceCount;i++){
+            for(Car car:cars){
+                car.race();
+            }
+        }
+        System.out.println();
+    }
+    private static void createCars(){
+        cars=new Car[carNames.length];
+        int i=0;
+        for(String name:carNames){
+            cars[i++]=new Car(name);
+        }
     }
     private static void inspectCarNames(){
         for(String name:carNames){
