@@ -13,8 +13,28 @@ public class Application {
         getRaceCount();
 
         createCars();
+
         System.out.println("샐행 결과");
         startRacing();
+
+        determineWinner();
+    }
+    private static void determineWinner(){
+        int max=0;
+        String[] winners=new String[cars.length];
+        for(Car car:cars){
+            int distance=car.getDistance();
+            if(max>distance){
+                max=distance;
+            }
+        }
+        int i=0;
+        for(Car car:cars){
+            if(max==car.getDistance()){
+                winners[i++]=car.getName();
+            }
+        }
+        System.out.println("최종 우승자 : "+String.join(", ",winners));
     }
     private static void startRacing(){
         for(int i=0;i<raceCount;i++){
