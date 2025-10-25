@@ -59,7 +59,7 @@ public class Application {
     private static void inspectCarNames() {
         for (String name : carNames) {
             if (!name.matches("^[a-zA-Z]{1,5}$")) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("자동차 이름 형식을 맞춰주세요.(5자 이하, 특수문자(공백 포함) 제외)");
             }
         }
     }
@@ -69,7 +69,7 @@ public class Application {
         String strCarNames = Console.readLine();
 
         carNames = strCarNames.split(",");
-        ;
+
         inspectCarNames();
     }
 
@@ -78,8 +78,11 @@ public class Application {
         String strRaceCount = Console.readLine();
         try {
             raceCount = Integer.parseInt(strRaceCount);
+            if (raceCount <= 0) {
+                throw new IllegalArgumentException("시도할 횟수는 0보다 커야합니다.");
+            }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("시도할 횟수를 정수로 변환할 수 없습니다.");
         }
     }
 }
