@@ -13,15 +13,20 @@ public class Car {
 
     public void race() {
         int rand = Randoms.pickNumberInRange(0, 9);
+        move(rand);
+        System.out.println(getMoveResult());
+    }
+
+    public void move(int rand) {
         if (rand >= 4) {
             distance++;
         }
-        System.out.print(name + " : ");
-        for (int i = 0; i < distance; i++) {
-            System.out.print("-");
-        }
-        System.out.println();
     }
+
+    public String getMoveResult() {
+        return name + " : " + "-".repeat(distance);
+    }
+
 
     public int getDistance() {
         return distance;
